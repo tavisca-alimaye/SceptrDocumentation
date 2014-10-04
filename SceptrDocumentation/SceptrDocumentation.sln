@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SceptrDocumentation", "SceptrDocumentation\SceptrDocumentation.csproj", "{CBD7ADB3-7CFA-40E9-BC60-2CB5E2027F10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SceptrDocumentation.Tests", "SceptrDocumentation.Tests\SceptrDocumentation.Tests.csproj", "{0F6E0547-FFFE-4EE1-B229-A625B08936E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBD7ADB3-7CFA-40E9-BC60-2CB5E2027F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD7ADB3-7CFA-40E9-BC60-2CB5E2027F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD7ADB3-7CFA-40E9-BC60-2CB5E2027F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD7ADB3-7CFA-40E9-BC60-2CB5E2027F10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F6E0547-FFFE-4EE1-B229-A625B08936E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6E0547-FFFE-4EE1-B229-A625B08936E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6E0547-FFFE-4EE1-B229-A625B08936E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6E0547-FFFE-4EE1-B229-A625B08936E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
