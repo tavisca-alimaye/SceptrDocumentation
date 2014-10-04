@@ -18,28 +18,56 @@
         </div>
     </section>
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
-
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
-
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>
+@Html.ActionLink(
+    " ",
+    "Index",
+    "Home",
+    null,
+    new
+    {
+        style = "background: url('" + Url.Content("~/images/1.png") + "') no-repeat ; display:block; height:84px; width:264px;"
+    })
+@Html.ActionLink(
+    " ",
+    "Index",
+    "Home",
+    null,
+    new
+    {
+        style = "background: url('" + Url.Content("~/images/2.png") + "') no-repeat ; display:block; position: relative;left:240px; top:-82px;height:84px; width:264px;"
+    })
+@Html.ActionLink(
+    " ",
+    "Index",
+    "Home",
+    null,
+    new
+    {
+        style = "background: url('" + Url.Content("~/images/3.png") + "') no-repeat ; display:block;position: relative;left:479px; top:-164px; height:84px; width:264px;"
+    })
+@Html.ActionLink(
+    " ",
+    "Index",
+    "Home",
+    null,
+    new
+    {
+        style = "background: url('" + Url.Content("~/images/4.png") + "') no-repeat ; display:block;position: relative;left:0px; top:-129px; height:84px; width:264px;"
+    })
+@Html.ActionLink(
+    " ",
+    "Index",
+    "Home",
+    null,
+    new
+    {
+        style = "background: url('" + Url.Content("~/images/5.png") + "') no-repeat ;position: relative;left:240px; top:-210px; display:block; height:84px; width:264px;"
+    })@Html.ActionLink(
+    " ",
+    "Index",
+    "Home",
+    null,
+    new
+    {
+        style = "background: url('" + Url.Content("~/images/6.png") + "') no-repeat ;position: relative;left:479px; top:-293px; display:block; height:84px; width:264px;"
+    })
