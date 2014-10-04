@@ -42,6 +42,20 @@ namespace SceptrDocumentation.Models
         public string Name { get; set; }
     }
 
+    public class SupplierProduct
+    {
+        [Key, Column(Order = 0)]
+        public int SupplierId { get; set; }
+        [ForeignKey("SupplierId")]
+        public virtual Supplier Supplier { get; set; }
+
+        [Key, Column(Order = 1)]
+        public int ProductId { get; set; }
+        [ForeignKey("ProductId")]
+        public virtual Product Product { get; set; }
+    }
+
+
     public class ClientSupplierMap
     {
         [Key]
