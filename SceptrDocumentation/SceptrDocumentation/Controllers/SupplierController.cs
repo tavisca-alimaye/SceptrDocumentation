@@ -52,7 +52,7 @@ namespace SceptrDocumentation.Controllers
             {
                 db.Suppliers.Add(supplier);
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return RedirectToAction("SupplierProduct");
             }
 
             return View(supplier);
@@ -81,7 +81,7 @@ namespace SceptrDocumentation.Controllers
             {
                 db.Entry(supplier).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("SupplierProduct");
+                return RedirectToAction("Index");
             }
             return View(supplier);
         }
@@ -110,6 +110,15 @@ namespace SceptrDocumentation.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult SupplierProduct()
+        {
+            return View(db.SupplierProducts.ToList());
+        }
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

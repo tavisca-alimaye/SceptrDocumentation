@@ -122,6 +122,8 @@ namespace SceptrDocumentation.Models
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<SupplierProduct> SupplierProducts{ get; set; }
+
         public DbSet<ClientSupplierMap> ClientSupplierMaps { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Question> Questions { get; set; }
