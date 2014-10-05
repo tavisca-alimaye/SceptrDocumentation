@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<SceptrDocumentation.Models.SupplierProduct>
 
+
 @{
     ViewBag.Title = "SupplierProduct";
 }
@@ -18,38 +19,69 @@
             </th>
         </td>
     }
-    @*foreach (var supplier in @ViewBag.Suppliers)
+    @foreach (var supplier in @ViewBag.Suppliers)
     {
-         <tr>
+        <tr>
             <th>
                 @supplier.Text
             </th>
         </tr>
-        foreach(var product in @ViewBag.Products)
+        foreach (var product in @ViewBag.Products)
         {
-           <input type="checkbox" value="@supplier.Text"/>
-        }
-        foreach(var product in @ViewBag.Products)
-        {
+            int flag = 0;
             foreach (var supplierProduct in @ViewBag.SupplierProducts)
             {
-                    if (supplierProduct.SupplierId == supplier.Text.ID)
-                    {
-                        <input type="checkbox" value="@supplier.Text" checked/>
-                    }
-                    else
-                    {
-                        <input type="checkbox" value="@supplier.Text"/>
-                    }
-                }                
+                if ((supplierProduct.SupplierId.ToString() == supplier.Text) && supplierProduct.ProductId.ToString() == product.Text)
+                {
+                    
+                    <td>
+                        <th>
+                            <input type="checkbox" value="@supplier.Text" checked/>
+                        </th>
+                    </td>
+                    flag = 1;
+                    break;
+                }
             }
-        }*@
-        
+            if (flag == 0)
+            {
+                <td>
+                    <th>
+                        <input type="checkbox" value="@supplier.Text"/>
+                    </th>
+                </td>   
+            }
+        }
     }
+   
 
 
 
-    @foreach (var item in @ViewBag.Suppliers)
+
+
+    @*
+        
+            
+                @if ((supplierProduct.SupplierId.ToString() == supplier.Text) && (supplierProduct.ProductId.ToString()==product.Text))
+                {
+                    <td>
+                        <th>
+                        <th>
+                    <td>
+                }
+                else
+                {
+                    <td>
+                        <th>
+                            <input type="checkbox" value="@supplier.Text"/>
+                        <th>
+                    <td>
+                }
+            }
+        }
+    }               *@
+
+    @* @foreach (var item in @ViewBag.Suppliers)
     {
         <tr>
             <th>
@@ -66,6 +98,5 @@
                 </th>
             </td>
         }
-    }
-
+    }*@
 </table>
