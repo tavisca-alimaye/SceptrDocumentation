@@ -12,17 +12,28 @@
 <table>
     @foreach (var item in @ViewBag.Products)
     {
-        <tr>
-            @item.Text
-        </tr>
+        <td>
+            <th>
+                @item.Text
+            </th>
+        </td>
     }
     @foreach (var item in @ViewBag.Suppliers)
     {
-        <td>
-            @item.Text
-
-
-        </td>
+        <tr>
+            <th>
+                @item.Text
+            </th>
+        </tr>
+        
+        foreach (var item1 in @ViewBag.Products)
+        {
+            <td>
+                <th>
+                    <input type="checkbox" value="@item.Text"/>
+                </th>
+            </td>
+        }
     }
 
 </table>
