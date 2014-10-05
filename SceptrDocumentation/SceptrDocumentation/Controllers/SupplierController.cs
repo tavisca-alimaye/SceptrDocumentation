@@ -113,16 +113,20 @@ namespace SceptrDocumentation.Controllers
 
         public ActionResult SupplierProduct()
         {
-            //var supplierProducts = db.SupplierProducts.Include(p => p.Product).Include(s => s.Supplier);
             //supplierProducts = (from sp in supplierProducts select sp).Distinct();
-            var suppliers = new SelectList(db.Suppliers.Select(n => n.Name).Distinct().ToList());
+//            var suppliers = new SelectList(db.Suppliers.Select(n => n.Name).Distinct().ToList());
+            var suppliers = new SelectList(db.Suppliers.Select(n =>n.Name).Distinct().ToList());
             var products = new SelectList(db.Products.Select(n => n.Name).Distinct().ToList());
+            //var suppliers = db.Suppliers.Include(p => p.ID).Include(s => s.Name);
+
+            var suppliersProducts = db.SupplierProducts.Include(p => p.Product).Include(s => s.Supplier);
+
+            //var suppliersProducts = new SelectList(db.SupplierProducts.Select(n => n.Product.Name), db.SupplierProducts.Select(n => n.Supplier.Name));
             ViewBag.Products = products;
             ViewBag.Suppliers = suppliers;
+
+            ViewBag.SupplierProducts = suppliersProducts;
             return View(db.SupplierProducts.ToList());
-
-
-
         }
 
         protected override void Dispose(bool disposing)

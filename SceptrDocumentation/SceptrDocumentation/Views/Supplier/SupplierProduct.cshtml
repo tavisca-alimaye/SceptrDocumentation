@@ -18,6 +18,37 @@
             </th>
         </td>
     }
+    @*foreach (var supplier in @ViewBag.Suppliers)
+    {
+         <tr>
+            <th>
+                @supplier.Text
+            </th>
+        </tr>
+        foreach(var product in @ViewBag.Products)
+        {
+           <input type="checkbox" value="@supplier.Text"/>
+        }
+        foreach(var product in @ViewBag.Products)
+        {
+            foreach (var supplierProduct in @ViewBag.SupplierProducts)
+            {
+                    if (supplierProduct.SupplierId == supplier.Text.ID)
+                    {
+                        <input type="checkbox" value="@supplier.Text" checked/>
+                    }
+                    else
+                    {
+                        <input type="checkbox" value="@supplier.Text"/>
+                    }
+                }                
+            }
+        }*@
+        
+    }
+
+
+
     @foreach (var item in @ViewBag.Suppliers)
     {
         <tr>
@@ -28,6 +59,7 @@
         
         foreach (var item1 in @ViewBag.Products)
         {
+            
             <td>
                 <th>
                     <input type="checkbox" value="@item.Text"/>
