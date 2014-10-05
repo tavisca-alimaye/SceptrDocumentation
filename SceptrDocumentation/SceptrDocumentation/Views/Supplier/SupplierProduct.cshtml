@@ -29,9 +29,9 @@
         foreach (var product in @ViewBag.Products)
         {
             int flag = 0;
-            foreach (var supplierProduct in @ViewBag.SupplierProducts)
+            foreach (var supplierProduct in Model)
             {
-                if ((supplierProduct.SupplierId.ToString() == supplier.Text) && supplierProduct.ProductId.ToString() == product.Text)
+                if ((supplierProduct.Supplier.Name == supplier.Text) && supplierProduct.Product.Name == product.Text)
                 {
                     
                     <td>
