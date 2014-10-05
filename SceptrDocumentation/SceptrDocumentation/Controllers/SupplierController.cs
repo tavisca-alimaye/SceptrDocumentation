@@ -113,7 +113,16 @@ namespace SceptrDocumentation.Controllers
 
         public ActionResult SupplierProduct()
         {
+            //var supplierProducts = db.SupplierProducts.Include(p => p.Product).Include(s => s.Supplier);
+            //supplierProducts = (from sp in supplierProducts select sp).Distinct();
+            var suppliers = new SelectList(db.Suppliers.Select(n => n.Name).Distinct().ToList());
+            var products = new SelectList(db.Products.Select(n => n.Name).Distinct().ToList());
+            ViewBag.Products = products;
+            ViewBag.Suppliers = suppliers;
             return View(db.SupplierProducts.ToList());
+
+
+
         }
 
 

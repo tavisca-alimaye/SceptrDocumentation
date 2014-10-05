@@ -10,18 +10,19 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
-    <tr>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in @ViewBag.Products)
+    {
+        <tr>
+            @item.Text
+        </tr>
+    }
+    @foreach (var item in @ViewBag.Suppliers)
+    {
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @item.Text
+
+
         </td>
-    </tr>
-}
+    }
 
 </table>
