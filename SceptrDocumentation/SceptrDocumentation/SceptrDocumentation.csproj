@@ -183,6 +183,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\ClientSupplierController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -323,6 +325,17 @@
     <Content Include="Views\Supplier\SupplierProduct.cshtml" />
     <Content Include="Views\Supplier\SupplierProductEnabled.cshtml" />
     <Content Include="Views\Supplier\CreateNew.cshtml" />
+    <Content Include="Views\ClientSupplier\Index.cshtml" />
+    <Content Include="Views\ClientSupplier\Details.cshtml" />
+    <Content Include="Views\ClientSupplier\Create.cshtml" />
+    <Content Include="Views\ClientSupplier\Edit.cshtml" />
+    <Content Include="Views\ClientSupplier\Delete.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\Details.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
+    <Content Include="Views\Client\GetSupplierAndProductInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

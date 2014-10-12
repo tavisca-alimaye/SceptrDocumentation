@@ -1,4 +1,4 @@
-﻿@model SceptrDocumentation.Models.Product
+﻿@model SceptrDocumentation.Models.Client
 
 @{
     ViewBag.Title = "Edit";
@@ -7,10 +7,11 @@
 <h2>Edit</h2>
 
 @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Product</legend>
+        <legend>Client</legend>
 
         @Html.HiddenFor(model => model.ID)
 
@@ -21,7 +22,7 @@
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
-        
+
         <p>
             <input type="submit" value="Save" />
         </p>
