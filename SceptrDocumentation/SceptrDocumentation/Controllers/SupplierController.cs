@@ -154,6 +154,37 @@ namespace SceptrDocumentation.Controllers
             ViewBag.Products = products;
             return View();
         }
+
+        [HttpPost]
+        public ActionResult CreateNew(Supplier supplier,string[] Products)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Suppliers.Add(supplier);
+                db.SaveChanges();
+
+                var supplierID = (from supp in db.Suppliers where supp.Name==supplier.Name select supp.ID).First();
+
+
+
+                for (int i = 0; i < Products.Length; i++)
+                {
+                    var product = Products[i];
+                    var productID = (from prod in db.Products where prod.Name == product select prod.ID).First();
+                    SupplierProduct supp_prod=new SupplierProduct();
+                    supp_prod.SupplierId=supplierID;
+                    supp_prod.ProductId = productID;
+                    db.SupplierProducts.Add(supp_prod);
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("SupplierProduct");
+            }
+
+            return View(supplier);
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
