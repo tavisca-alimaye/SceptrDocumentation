@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SceptrDocumentation.Models.QuestionAnswerMapper>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Question
+        </th>
+
+        <th>
+            Supplier Name
+        </th>
+
+        <th>
+            Answer
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question.QuestionText)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.Name)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Answer)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { quesId = item.QuestionId,suppId = item.SupplierId })
+        </td>
+    </tr>
+}
+
+</table>

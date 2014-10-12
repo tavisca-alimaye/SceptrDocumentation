@@ -215,8 +215,19 @@ namespace SceptrDocumentation.Controllers
         }
 
 
+        public ActionResult QuestionsForSupplier(string supplierName)
+        {
+            var questionsForSupplier = from q in db.QuestionAnswerMappers.Include(q => q.Question)
+                                                                        .Include(s => s.Supplier)
+                                                                        .Include(v => v.Question.Verb)
+                                                                    where q.Supplier.Name == supplierName
+                                                                    select q;
+            ViewBag.Categories = db.Verbs;
+            ViewBag.SupplierName = supplierName;
+            return View(questionsForSupplier.ToList());
 
-
+        }
+        
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

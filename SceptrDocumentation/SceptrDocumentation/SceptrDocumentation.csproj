@@ -189,6 +189,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\SupplierQuestionController.cs" />
     <Compile Include="Controllers\VerbController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -348,6 +349,13 @@
     <Content Include="Views\Question\Create.cshtml" />
     <Content Include="Views\Question\Edit.cshtml" />
     <Content Include="Views\Question\Delete.cshtml" />
+    <Content Include="Views\SupplierQuestion\Index.cshtml" />
+    <Content Include="Views\SupplierQuestion\Details.cshtml" />
+    <Content Include="Views\SupplierQuestion\Create.cshtml" />
+    <Content Include="Views\SupplierQuestion\Edit.cshtml" />
+    <Content Include="Views\SupplierQuestion\Delete.cshtml" />
+    <Content Include="Views\SupplierQuestion\QuestionForSupplier.cshtml" />
+    <Content Include="Views\Supplier\QuestionsForSupplier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
