@@ -10,6 +10,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<p>
+    @Html.ActionLink("Edit", "SupplierProductEnabled")
+</p>
 <table>
     @foreach (var item in @ViewBag.Products)
     {
@@ -36,7 +39,7 @@
                     
                     <td>
                         <th>
-                            <input type="checkbox" value="@supplier.Text" checked/>
+                            <input type="checkbox" value="@supplier.Text" checked disabled/>
                         </th>
                     </td>
                     flag = 1;
@@ -47,15 +50,12 @@
             {
                 <td>
                     <th>
-                        <input type="checkbox" value="@supplier.Text"/>
+                        <input type="checkbox" value="@supplier.Text" disabled/>
                     </th>
                 </td>   
             }
         }
     }
-   
-
-
 
 
 

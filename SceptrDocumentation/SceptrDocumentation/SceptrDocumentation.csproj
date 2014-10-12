@@ -321,6 +321,8 @@
     <Content Include="Views\Supplier\Edit.cshtml" />
     <Content Include="Views\Supplier\Delete.cshtml" />
     <Content Include="Views\Supplier\SupplierProduct.cshtml" />
+    <Content Include="Views\Supplier\SupplierProductEnabled.cshtml" />
+    <Content Include="Views\Supplier\CreateNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

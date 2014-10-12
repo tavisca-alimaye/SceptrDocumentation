@@ -1,0 +1,47 @@
+﻿@model SceptrDocumentation.Models.SupplierProduct
+
+@{
+    ViewBag.Title = "CreateNew";
+}
+
+<h2>CreateNew</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>SupplierProduct</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Supplier.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Supplier.Name)
+            @Html.ValidationMessageFor(model => model.Supplier.Name)
+        </div>
+
+        <table>
+        @foreach (var item in @ViewBag.Products)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" value="@item.Text"/>
+                </td>
+                <td>
+                    @item.Text
+                </td>
+            </tr>
+        }
+        </table>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
