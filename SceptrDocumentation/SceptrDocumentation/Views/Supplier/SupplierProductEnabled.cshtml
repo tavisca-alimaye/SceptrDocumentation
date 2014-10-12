@@ -6,9 +6,9 @@
 
 <h2>SupplierProduct</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateNew")
 </p>
-@using (Html.BeginForm("Test","Home"))
+@using (Html.BeginForm("Update","Supplier"))
 {
     <table>
         @foreach (var item in @ViewBag.Products)
@@ -32,13 +32,12 @@
                 foreach (var supplierProduct in Model)
                 {
                     if ((supplierProduct.Supplier.Name == supplier.Text) && supplierProduct.Product.Name == product.Text)
-                    {
-                    
-            <td>
-                <th>
-                    <input type="checkbox" value="@supplier.Text" checked />
-                </th>
-            </td>
+                    {                   
+                        <td>
+                            <th>
+                                <input type="checkbox" value="@supplier.Text+@product.Text" name="SupplierProducts"  checked />
+                            </th>
+                        </td>
                         flag = 1;
                         break;
                     }
@@ -47,7 +46,7 @@
                 {
                     <td>
                         <th>
-                            <input type="checkbox" value="@supplier.Text" />
+                            <input type="checkbox" value="@supplier.Text+@product.Text" name="SupplierProducts" />
                         </th>
                     </td>   
                 }

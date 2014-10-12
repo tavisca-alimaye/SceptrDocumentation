@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using SceptrDocumentation.Models;
@@ -162,11 +163,7 @@ namespace SceptrDocumentation.Controllers
             {
                 db.Suppliers.Add(supplier);
                 db.SaveChanges();
-
                 var supplierID = (from supp in db.Suppliers where supp.Name==supplier.Name select supp.ID).First();
-
-
-
                 for (int i = 0; i < Products.Length; i++)
                 {
                     var product = Products[i];
@@ -177,12 +174,47 @@ namespace SceptrDocumentation.Controllers
                     db.SupplierProducts.Add(supp_prod);
                     db.SaveChanges();
                 }
-
                 return RedirectToAction("SupplierProduct");
             }
 
             return View(supplier);
         }
+
+        [HttpPost, ActionName("Update")]
+        public ActionResult Update(string[] SupplierProducts)
+        {
+            var rows = from o in db.SupplierProducts select o;
+            foreach (var row in rows)
+            {
+                db.SupplierProducts.Remove(row);
+            }
+            //db.SaveChanges();
+            //var objCtx = ((System.Data.Entity.Infrastructure.IObjectContextAdapter)db).ObjectContext;
+            //objCtx.ExecuteStoreCommand("TRUNCATE TABLE SupplierProduct"); 
+            for (int i = 0; i < SupplierProducts.Length; i++)
+            {
+                var supplier_product = SupplierProducts[i];
+                string pattern=@"(\w+)+(\w+)";
+                MatchCollection mc = Regex.Matches(supplier_product, pattern);
+                var supplier = mc[0];
+                var product = mc[1];
+
+                var supplierName = supplier.ToString();
+                var productName = product.ToString();
+                var supplierID = (from supp in db.Suppliers where supp.Name == supplierName select supp.ID).First();
+                var productID = (from prod in db.Products where prod.Name == productName select prod.ID).First();
+
+                SupplierProduct supp_prod = new SupplierProduct();
+                supp_prod.SupplierId = supplierID;
+                supp_prod.ProductId = productID;
+                db.SupplierProducts.Add(supp_prod);
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("SupplierProduct");
+        }
+
+
 
 
         protected override void Dispose(bool disposing)
