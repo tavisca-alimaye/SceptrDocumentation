@@ -227,6 +227,15 @@ namespace SceptrDocumentation.Controllers
             return View(questionsForSupplier.ToList());
 
         }
+
+        [HttpPost]
+        public ActionResult SubmitNewAnswerForQuestion(string questionId, string supplierId, string answer)
+        {
+            var entryToBeEdited = db.QuestionAnswerMappers.Find(Int32.Parse(questionId), Int32.Parse(supplierId));
+            entryToBeEdited.Answer = answer;
+            db.SaveChanges();
+            return View("QuestionsForSupplier");
+        }
         
         protected override void Dispose(bool disposing)
         {

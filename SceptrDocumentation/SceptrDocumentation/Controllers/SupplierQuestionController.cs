@@ -133,7 +133,7 @@ namespace SceptrDocumentation.Controllers
 
         public ActionResult QuestionForSupplier(int id = 0)
         {
-            var supplierQuestions = db.QuestionAnswerMappers.Include(s => s.Supplier).Include(q => q.Question);
+            var supplierQuestions = db.QuestionAnswerMappers.Include(s => s.Supplier).Include(q => q.Question).Include(a => a.Answer);
             var questions = from q in supplierQuestions where q.SupplierId == id select q;
             //foreach (var question in questions)
             //{

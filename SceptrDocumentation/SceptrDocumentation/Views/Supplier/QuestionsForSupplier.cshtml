@@ -24,6 +24,9 @@
             {
                 <td>
                     @item.Question.QuestionText
+                    <br>
+                    @Html.TextBox("AnswerTextBox"+item.Question.QuestionText, item.Answer, new { enabled = "enabled"})
+                    @Html.ActionLink("Submit", "SubmitNewAnswerForQuestion")
                 </td>
             }
         }
