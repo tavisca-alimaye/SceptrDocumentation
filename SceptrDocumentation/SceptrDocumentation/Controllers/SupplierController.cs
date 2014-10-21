@@ -164,14 +164,24 @@ namespace SceptrDocumentation.Controllers
                 db.Suppliers.Add(supplier);
                 db.SaveChanges();
                 var supplierID = (from supp in db.Suppliers where supp.Name==supplier.Name select supp.ID).First();
-                for (int i = 0; i < Products.Length; i++)
+                var questionsIds = from q in db.Questions select q.Id;
+                if (Products != null)
                 {
-                    var product = Products[i];
-                    var productID = (from prod in db.Products where prod.Name == product select prod.ID).First();
-                    SupplierProduct supp_prod=new SupplierProduct();
-                    supp_prod.SupplierId=supplierID;
-                    supp_prod.ProductId = productID;
-                    db.SupplierProducts.Add(supp_prod);
+                    for (int i = 0; i < Products.Length; i++)
+                    {
+                        var product = Products[i];
+                        var productID = (from prod in db.Products where prod.Name == product select prod.ID).First();
+                        SupplierProduct supp_prod = new SupplierProduct();
+                        supp_prod.SupplierId = supplierID;
+                        supp_prod.ProductId = productID;
+                        db.SupplierProducts.Add(supp_prod);
+                        db.SaveChanges();
+                    } 
+                }
+
+                foreach (var questionId in questionsIds.ToList())
+                {
+                    db.QuestionAnswerMappers.Add(new QuestionAnswerMapper() { QuestionId = questionId,SupplierId = supplierID,Answer = ""});
                     db.SaveChanges();
                 }
                 return RedirectToAction("SupplierProduct");
