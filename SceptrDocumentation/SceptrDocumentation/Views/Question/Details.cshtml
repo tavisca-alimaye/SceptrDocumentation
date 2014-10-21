@@ -1,0 +1,43 @@
+﻿@model SceptrDocumentation.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Question</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QuestionText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuestionText)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Keyword)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Keyword)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Verb.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Verb.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

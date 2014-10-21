@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SceptrDocumentation.Models.SupplierProduct>
+
+@{
+    ViewBag.Title = "SupplierProductEnabled";
+}
+
+<h2>SupplierProduct</h2>
+<p>
+    @Html.ActionLink("Create New", "CreateNew")
+</p>
+@using (Html.BeginForm("Update","Supplier"))
+{
+    <table>
+        @foreach (var item in @ViewBag.Products)
+        {
+            <td>
+                <th>
+                    &nbsp&nbsp&nbsp @item.Text
+                </th>
+            </td>
+        }
+        @foreach (var supplier in @ViewBag.Suppliers)
+        {
+            <tr>
+                <th>
+                    @supplier.Text
+                </th>
+            @foreach (var product in @ViewBag.Products)
+            {
+                int flag = 0;
+                foreach (var supplierProduct in Model)
+                {
+                    if ((supplierProduct.Supplier.Name == supplier.Text) && supplierProduct.Product.Name == product.Text)
+                    {                   
+                        <td>
+                            <th>
+                                <input type="checkbox" value="@supplier.Text+@product.Text" name="SupplierProducts"  checked />
+                            </th>
+                        </td>
+                        flag = 1;
+                        break;
+                    }
+                }
+                if (flag == 0)
+                {
+                    <td>
+                        <th>
+                            <input type="checkbox" value="@supplier.Text+@product.Text" name="SupplierProducts" />
+                        </th>
+                    </td>   
+                }
+            }
+            </tr>
+       }
+        </table>
+       <input type="submit" value="Submit" />
+  @*  <p>
+        @Html.ActionLink("Update", "Update")
+    </p>*@
+}
