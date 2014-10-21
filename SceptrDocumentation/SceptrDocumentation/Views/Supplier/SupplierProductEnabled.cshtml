@@ -15,7 +15,7 @@
         {
             <td>
                 <th>
-                    @item.Text
+                    &nbsp&nbsp&nbsp @item.Text
                 </th>
             </td>
         }
@@ -25,8 +25,7 @@
                 <th>
                     @supplier.Text
                 </th>
-            </tr>
-            foreach (var product in @ViewBag.Products)
+            @foreach (var product in @ViewBag.Products)
             {
                 int flag = 0;
                 foreach (var supplierProduct in Model)
@@ -51,6 +50,7 @@
                     </td>   
                 }
             }
+            </tr>
        }
         </table>
        <input type="submit" value="Submit" />

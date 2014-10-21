@@ -18,7 +18,7 @@
     {
         <td>
             <th>
-                @item.Text
+                &nbsp&nbsp&nbsp @item.Text
             </th>
         </td>
     }
@@ -28,8 +28,7 @@
             <th>
                 @supplier.Text
             </th>
-        </tr>
-        foreach (var product in @ViewBag.Products)
+        @foreach (var product in @ViewBag.Products)
         {
             int flag = 0;
             foreach (var supplierProduct in Model)
@@ -56,50 +55,9 @@
             }
         }
         <td>
-            @Html.ActionLink("Question", "QuestionsForSupplier", new { supplierName = @supplier.Text })
+            &nbsp&nbsp @Html.ActionLink("Questions", "QuestionsForSupplier", new { supplierName = @supplier.Text })
         </td>
-    }
-
-
-
-    @*
-        
-            
-                @if ((supplierProduct.SupplierId.ToString() == supplier.Text) && (supplierProduct.ProductId.ToString()==product.Text))
-                {
-                    <td>
-                        <th>
-                        <th>
-                    <td>
-                }
-                else
-                {
-                    <td>
-                        <th>
-                            <input type="checkbox" value="@supplier.Text"/>
-                        <th>
-                    <td>
-                }
-            }
-        }
-    }               *@
-
-    @* @foreach (var item in @ViewBag.Suppliers)
-    {
-        <tr>
-            <th>
-                @item.Text
-            </th>
         </tr>
-        
-        foreach (var item1 in @ViewBag.Products)
-        {
-            
-            <td>
-                <th>
-                    <input type="checkbox" value="@item.Text"/>
-                </th>
-            </td>
-        }
-    }*@
+
+    }
 </table>
