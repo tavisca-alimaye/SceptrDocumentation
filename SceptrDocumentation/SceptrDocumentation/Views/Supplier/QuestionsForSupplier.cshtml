@@ -8,6 +8,7 @@
 
 <p>
     @Html.ActionLink("Back to Index", "SupplierProduct")
+    @Html.ActionLink("Edit", "EditQuestionsForSupplier", new { supplierName = @ViewBag.SupplierName})
 </p>
 <table>
     @foreach (var category in @ViewBag.Categories)
@@ -25,8 +26,7 @@
                 <td>
                     @item.Question.QuestionText
                     <br>
-                    @Html.TextBox("AnswerTextBox"+item.Question.QuestionText, item.Answer, new { enabled = "enabled"})
-                    @Html.ActionLink("Submit", "SubmitNewAnswerForQuestion")
+                    <input type="text" value="@item.Answer" name="answers" disabled/>
                 </td>
             }
         }

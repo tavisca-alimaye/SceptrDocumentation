@@ -228,13 +228,36 @@ namespace SceptrDocumentation.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult SubmitNewAnswerForQuestion(string questionId, string supplierId, string answer)
+        public ActionResult EditQuestionsForSupplier(string supplierName)
         {
-            var entryToBeEdited = db.QuestionAnswerMappers.Find(Int32.Parse(questionId), Int32.Parse(supplierId));
-            entryToBeEdited.Answer = answer;
+            var questionsForSupplier = from q in db.QuestionAnswerMappers.Include(q => q.Question)
+                                                                        .Include(s => s.Supplier)
+                                                                        .Include(v => v.Question.Verb)
+                                       where q.Supplier.Name == supplierName
+                                       select q;
+            ViewBag.Categories = db.Verbs;
+            ViewBag.SupplierName = supplierName;
+            return View(questionsForSupplier.ToList());
+        }
+
+        [HttpPost, ActionName("SubmitNewAnswersForQuestion")]
+        public ActionResult SubmitNewAnswersForQuestion(string[] answers,string[] questionIds,string supplierId)
+        {
+            int supplier = Int32.Parse(supplierId);
+            var rows = from r in db.QuestionAnswerMappers where r.SupplierId == supplier select r;
+            string supplierName = db.Suppliers.Find(supplier).Name;
+            foreach (var row in rows)
+            {
+                db.QuestionAnswerMappers.Remove(row);
+            }
+
+            for (int i = 0; i < questionIds.Length; i++)
+            {
+                int question = Int32.Parse(questionIds[i]);
+                db.QuestionAnswerMappers.Add(new QuestionAnswerMapper() { QuestionId = question, SupplierId = supplier, Answer = answers[i] });
+            }
             db.SaveChanges();
-            return View("QuestionsForSupplier");
+            return RedirectToAction("QuestionsForSupplier", new { supplierName = supplierName});
         }
         
         protected override void Dispose(bool disposing)
