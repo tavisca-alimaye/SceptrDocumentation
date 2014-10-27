@@ -1,19 +1,14 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Scepter Documentation Tool";
 }
 @section featured {
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
             </hgroup>
             <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+                Documentation tool for supplier and client mapping. Also supports supplier questionnaire.
             </p>
         </div>
     </section>
@@ -21,53 +16,53 @@
 @Html.ActionLink(
     " ",
     "Index",
-    "Home",
+    "Product",
     null,
     new
     {
-        style = "background: url('" + Url.Content("~/images/1.png") + "') no-repeat ; display:block; height:84px; width:264px;"
+        style = "background: url('" + Url.Content("~/images/product.png") + "') no-repeat ; display:block; height:84px; width:264px;"
     })
 @Html.ActionLink(
     " ",
     "Index",
-    "Home",
+    "Client",
     null,
     new
     {
-        style = "background: url('" + Url.Content("~/images/2.png") + "') no-repeat ; display:block; position: relative;left:240px; top:-82px;height:84px; width:264px;"
+        style = "background: url('" + Url.Content("~/images/client.png") + "') no-repeat ; display:block; position: relative;left:240px; top:-82px;height:84px; width:264px;"
+    })
+@Html.ActionLink(
+    " ",
+    "SupplierProduct",
+    "Supplier",
+    null,
+    new
+    {
+        style = "background: url('" + Url.Content("~/images/supplier.png") + "') no-repeat ; display:block;position: relative;left:479px; top:-164px; height:84px; width:264px;"
     })
 @Html.ActionLink(
     " ",
     "Index",
-    "Home",
+    "ClientSupplier",
     null,
     new
     {
-        style = "background: url('" + Url.Content("~/images/3.png") + "') no-repeat ; display:block;position: relative;left:479px; top:-164px; height:84px; width:264px;"
+        style = "background: url('" + Url.Content("~/images/clientsupplier.png") + "') no-repeat ; display:block;position: relative;left:0px; top:-129px; height:84px; width:264px;"
     })
 @Html.ActionLink(
     " ",
     "Index",
-    "Home",
+    "Question",
     null,
     new
     {
-        style = "background: url('" + Url.Content("~/images/4.png") + "') no-repeat ; display:block;position: relative;left:0px; top:-129px; height:84px; width:264px;"
-    })
-@Html.ActionLink(
+        style = "background: url('" + Url.Content("~/images/supplierquestion.png") + "') no-repeat ;position: relative;left:240px; top:-210px; display:block; height:84px; width:264px;"
+    })@*@Html.ActionLink(
     " ",
     "Index",
     "Home",
     null,
     new
     {
-        style = "background: url('" + Url.Content("~/images/5.png") + "') no-repeat ;position: relative;left:240px; top:-210px; display:block; height:84px; width:264px;"
-    })@Html.ActionLink(
-    " ",
-    "Index",
-    "Home",
-    null,
-    new
-    {
-        style = "background: url('" + Url.Content("~/images/6.png") + "') no-repeat ;position: relative;left:479px; top:-293px; display:block; height:84px; width:264px;"
-    })
+        style = "background: url('" + Url.Content("~/images/questionanswer.png") + "') no-repeat ;position: relative;left:479px; top:-293px; display:block; height:84px; width:264px;"
+    })*@

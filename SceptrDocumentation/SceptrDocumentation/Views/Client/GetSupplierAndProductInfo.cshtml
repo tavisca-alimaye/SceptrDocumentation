@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SceptrDocumentation.Models.ClientSupplierMap>
+
+@{
+    ViewBag.Title = "GetSupplierAndProductInfo";
+}
+
+<h2>@ViewBag.Client</h2>
+
+@*<p>
+    @Html.ActionLink("Edit", "ClientSupplierEnabled")
+</p>*@
+<table>
+    @foreach (var item in @ViewBag.Products)
+    {
+        <td>
+            <th>
+                @item.Text
+            </th>
+        </td>
+    }
+    @foreach (var supplier in @ViewBag.Suppliers)
+    {
+        <tr>
+            <th>
+                @supplier.Text
+            </th>
+        </tr>
+        foreach (var product in @ViewBag.Products)
+        {
+            int flag = 0;
+            foreach (var supplierProduct in @ViewBag.ClientSupplierMap)
+            {
+                if ((supplierProduct.Supplier.Name == supplier.Text) && supplierProduct.Product.Name == product.Text)
+                {
+                    
+                    <td>
+                        <th>
+                            <input type="checkbox" value="@supplier.Text" checked disabled/>
+                        </th>
+                    </td>
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0)
+            {
+                <td>
+                    <th>
+                        <input type="checkbox" value="@supplier.Text" disabled/>
+                    </th>
+                </td>   
+            }
+        }
+    }
+
+
+</table>

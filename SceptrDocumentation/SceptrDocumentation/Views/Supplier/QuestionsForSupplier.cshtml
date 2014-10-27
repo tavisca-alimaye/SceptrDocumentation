@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SceptrDocumentation.Models.QuestionAnswerMapper>
+
+@{
+    ViewBag.Title = "QuestionsForSupplier";
+}
+
+<h2>@ViewBag.SupplierName</h2>
+
+<p>
+    @Html.ActionLink("Back to Index", "SupplierProduct")
+    @Html.ActionLink("Edit", "EditQuestionsForSupplier", new { supplierName = @ViewBag.SupplierName})
+</p>
+<table>
+    @foreach (var category in @ViewBag.Categories)
+    {
+        <tr>
+            <th>
+                Category : @category.Name
+            </th>
+        </tr>
+
+        foreach (var item in Model)
+        {
+            if(item.Question.Verb.Name ==  @category.Name)
+            {
+                <td>
+                    @item.Question.QuestionText
+                    <br>
+                    <input type="text" value="@item.Answer" name="answers" disabled/>
+                </td>
+            }
+        }
+    }
+
+</table>

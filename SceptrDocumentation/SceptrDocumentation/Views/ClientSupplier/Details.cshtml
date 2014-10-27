@@ -1,0 +1,36 @@
+﻿@model SceptrDocumentation.Models.ClientSupplierMap
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ClientSupplierMap</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Client.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Client.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Supplier.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Supplier.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,19 +1,23 @@
-﻿<!DOCTYPE html>
+﻿    <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <title>Sceptr Documentation tool</title>
+        <link href="~/Images/sceptr.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
-        <header>
+        <header 
             <div class="content-wrapper">
+                <a href="/Home/Index">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                    <img src="~/Images/logo_tavisca.gif" />
+                    <img src="~/Images/sceptr.png" />
+
                 </div>
+                    </a>
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
@@ -21,8 +25,10 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Suppliers", "SupplierProduct", "Supplier")</li>
+                            <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+                            
+
                         </ul>
                     </nav>
                 </div>
@@ -37,7 +43,9 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - Tavisca Solutions Pvt. Ltd.
+
+</p>
                 </div>
             </div>
         </footer>
