@@ -11,17 +11,24 @@
     <body>
         <header 
             <div class="content-wrapper">
+                <a href="/Home/Index">
                 <div class="float-left">
                     <img src="~/Images/logo_tavisca.gif" />
+                    <img src="~/Images/sceptr.png" />
+
                 </div>
-                <img src="~/Images/sceptr.png" />
+                    </a>
                 <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Suppliers", "SupplierProduct", "Supplier")</li>
+                            <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+                            
+
                         </ul>
                     </nav>
                 </div>
