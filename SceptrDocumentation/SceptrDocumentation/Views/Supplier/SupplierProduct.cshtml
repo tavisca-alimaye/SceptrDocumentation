@@ -56,8 +56,16 @@
         }
         <td>
              &nbsp &nbsp @Html.ActionLink("Questions", "QuestionsForSupplier", new { supplierName = @supplier.Text })
+           
         </td>
         </tr>
 
     }
 </table>
+@using (Html.BeginForm("Index","Supplier",FormMethod.Post,new { enctype = "multipart/form-data" }))
+            {                   
+                <input type="file" name="file" id="file" />
+                <input type="submit" value="Upload" />  
+            }
+
+
