@@ -1,0 +1,99 @@
+﻿@using System.Text.RegularExpressions
+@model SceptrDocumentation.Models.ClientSupplierMap
+
+@{
+    ViewBag.Title = "SeeDetails";
+}
+
+<h2>SeeDetails</h2>
+<table>
+@foreach (var item in @ViewBag.Clients)
+        {
+            <td>
+                <th>
+                    &nbsp&nbsp&nbsp @item
+                </th>
+            </td>
+        }
+    @foreach (var supplier in @ViewBag.Suppliers)
+        {
+            <tr>
+                <th>
+                    @supplier
+                </th>
+              
+                @foreach (var client in @ViewBag.Clients)
+                {
+                    foreach (var entry in @ViewBag.ClientSuppliers)
+                    {
+                        const string pattern = @"(\w+)+(\w+)";
+
+                        MatchCollection mc = Regex.Matches(entry, pattern);
+                        var clientName = mc[0];
+                        var supplierName = mc[1];
+                        if (client == clientName.ToString() && supplier == supplierName.ToString())
+                        {
+                            <td>
+                                <th>
+                                    <input type="checkbox" disabled checked/>
+                                </th>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <th>
+                                    <input type="checkbox" disabled/>
+                                </th>
+                            </td>
+                        }
+                    }
+                }
+            </tr>
+        }
+</table>
+    
+    
+    
+
+  @*  @foreach (var supplier in @ViewBag.Suppliers)
+        {
+            <tr>
+                <th>
+                    @supplier
+                </th>
+             
+                @foreach (var client in @ViewBag.Clients)
+                {
+                    foreach (var entry in @ViewBag.ClientSuppliers)
+                    {
+                        
+                        const string pattern = @"(\w+)+(\w+)";
+                        MatchCollection mc = Regex.Matches(entry, pattern);
+                        var clientName = mc[0];
+                        var supplierName = mc[1];
+                        if (!clientList.Contains(clientName.ToString()))
+                        {
+                            if (client == clientName.ToString() && supplier == supplierName.ToString())
+                            {
+                                <td>
+                                    <th>
+                                        <input type="checkbox" disabled checked/>
+                                    </th>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <th>
+                                        <input type="checkbox" disabled/>
+                                    </th>
+                                </td>
+                            }
+                        }
+                        break;
+                    }
+                }
+            </tr>
+        }
+</table>*@

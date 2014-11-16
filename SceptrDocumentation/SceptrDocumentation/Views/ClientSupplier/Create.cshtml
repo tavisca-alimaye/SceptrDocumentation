@@ -21,11 +21,11 @@
             @Html.ValidationMessageFor(model => model.ClientId)
         </div>
 
-        <div class="editor-label">
+                <div class="editor-label">
             @Html.LabelFor(model => model.SupplierId, "Supplier")
         </div>
-        <div class="editor-field">
-            @Html.DropDownList("SupplierId", String.Empty)
+       <div class="editor-field">
+            @Html.DropDownList("SupplierList", (SelectList)ViewBag.SupplierId,string.Empty)
             @Html.ValidationMessageFor(model => model.SupplierId)
         </div>
 
@@ -33,7 +33,7 @@
             @Html.LabelFor(model => model.ProductId, "Product")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("ProductId", String.Empty)
+            @Html.DropDownList("ProductList",(SelectList)ViewBag.ProductId, String.Empty)
             @Html.ValidationMessageFor(model => model.ProductId)
         </div>
 
@@ -49,4 +49,29 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+        //alert("Hi...");
+        $(document).ready(function() {
+            $("#SupplierList").change(function () {
+                //alert("asdfasdf");
+                var dID = $(this).val();
+                //alert(dID);
+                $.getJSON("../ClientSupplier/LoadProductsBySuppliers", { sId: dID },
+                    function (data) {
+                        var select = $("#ProductList");
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: 0,
+                            text: "Select a Product"
+                        }));
+                        $.each(data, function (index, itemData) {
+                            select.append($('<option/>', {
+                                //value: itemData.Value,
+                                text: itemData.Text
+                            }));
+                        });
+                    });
+            });
+        });
+    </script>
 }

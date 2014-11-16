@@ -359,6 +359,7 @@
     <Content Include="Views\SupplierQuestion\QuestionForSupplier.cshtml" />
     <Content Include="Views\Supplier\QuestionsForSupplier.cshtml" />
     <Content Include="Views\Supplier\EditQuestionsForSupplier.cshtml" />
+    <Content Include="Views\ClientSupplier\SeeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
