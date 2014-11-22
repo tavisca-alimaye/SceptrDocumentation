@@ -360,6 +360,7 @@
     <Content Include="Views\Supplier\QuestionsForSupplier.cshtml" />
     <Content Include="Views\Supplier\EditQuestionsForSupplier.cshtml" />
     <Content Include="Views\ClientSupplier\SeeDetails.cshtml" />
+    <Content Include="Views\ClientSupplier\SeeDetailsEnabled.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

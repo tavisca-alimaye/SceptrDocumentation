@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using SceptrDocumentation.Models;
@@ -185,17 +186,81 @@ namespace SceptrDocumentation.Controllers
                     clientsSuppliers.Add(csName);
                 }
             }
-
-
-            //var clientsuppliermaps = (from csm in db.ClientSupplierMaps.Include(s => db.Suppliers)
-            //                                                            .Include(c => db.Clients)
-            //                                                            .Include(p=>db.Products) 
-            //                                                    where csm.ProductId == id 
-            //                                                    select csm).ToList();
             ViewBag.Suppliers = supplierNames;
             ViewBag.Clients = clientNames;
             ViewBag.ClientSuppliers = clientsSuppliers;
+            ViewBag.ProductId = id;
             return View();
+        }
+        public ActionResult SeeDetailsEnabled(int id = 0)
+        {
+            var suppliers = (from suppProd in db.SupplierProducts.Include(s => db.Suppliers)
+                                                                .Include(p => db.Products)
+                             where suppProd.Product.ID == id
+                             select suppProd.SupplierId).ToList();
+            var supplierNames = new List<string>();
+            var clientNames = new List<string>();
+            var clientsSuppliers = new List<string>();
+            foreach (var supplier in suppliers)
+            {
+
+                var clientId = (from cs in db.ClientSupplierMaps.Include(s => db.Suppliers)
+                                           .Include(c => db.Clients)
+                                where cs.SupplierId == supplier && cs.ProductId == id
+                                select cs.ClientId).ToList();
+                var supplierName = (from supp in db.Suppliers where supp.ID == supplier select supp.Name).First();
+                supplierNames.Add(supplierName);
+                foreach (var cId in clientId)
+                {
+                    var clientName = (from client in db.Clients where client.ID == cId select client.Name).First();
+                    if (!clientNames.Contains(clientName))
+                    {
+                        clientNames.Add(clientName);
+                    }
+
+                    var csName = clientName + "+" + supplierName;
+                    clientsSuppliers.Add(csName);
+                }
+            }
+            ViewBag.Suppliers = supplierNames;
+            ViewBag.Clients = clientNames;
+            ViewBag.ClientSuppliers = clientsSuppliers;
+            ViewBag.ProductId = id.ToString();
+            return View();
+        }
+        [HttpPost, ActionName("Update")]
+        public ActionResult Update(string[] clientSuppliers,int productID)
+        {
+            var rows = from o in db.ClientSupplierMaps select o;
+            //foreach (var row in rows)
+            //{
+            //    db.ClientSupplierMaps.Remove(row);
+            //}
+            //db.SaveChanges();
+            //var objCtx = ((System.Data.Entity.Infrastructure.IObjectContextAdapter)db).ObjectContext;
+            //objCtx.ExecuteStoreCommand("TRUNCATE TABLE SupplierProduct"); 
+            for (int i = 0; i < clientSuppliers.Length; i++)
+            {
+                var client_suppliers = clientSuppliers[i];
+                string pattern = @"(\w+)+(\w+)+(\w+)";
+                MatchCollection mc = Regex.Matches(client_suppliers, pattern);
+                var client = mc[0];
+                var supplier = mc[1];
+
+                var clientName = client.ToString();
+                var supplierName = supplier.ToString();
+                var supplierID = (from supp in db.Suppliers where supp.Name == supplierName select supp.ID).First();
+                var clientID = (from clnt in db.Clients where clnt.Name == clientName select clnt.ID).First();
+
+                ClientSupplierMap clientSupplierMap = new ClientSupplierMap();
+                clientSupplierMap.SupplierId = supplierID;
+                clientSupplierMap.ClientId = clientID;
+                clientSupplierMap.ProductId = productID;
+                db.ClientSupplierMaps.Add(clientSupplierMap);
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("SupplierProduct");
         }
 
 
