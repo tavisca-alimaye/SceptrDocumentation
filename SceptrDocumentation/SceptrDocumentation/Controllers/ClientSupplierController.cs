@@ -19,8 +19,16 @@ namespace SceptrDocumentation.Controllers
 
         public ActionResult Index()
         {
-            var clientsuppliermaps = db.ClientSupplierMaps.Include(c => c.Client).Include(c => c.Supplier).Include(c => c.Product);
-            return View(clientsuppliermaps.ToList());
+            //var list = (from clientSupplier in db.ClientSupplierMaps select clientSupplier).ToList();
+            //var grouped = list.GroupBy(item => item.Product.Name);
+            //var shortest = grouped.Select(grp => grp.OrderBy(item => item.Product.Name).First());
+            //return View(shortest);
+            var list = (from product in db.Products select product).ToList();
+            var grouped = list.GroupBy(item => item.Name);
+            var shortest = grouped.Select(grp => grp.OrderBy(item => item.Name).First());
+            //ViewBag.Products = shortest;
+            return View(shortest);
+            
         }
 
         //
@@ -181,13 +189,13 @@ namespace SceptrDocumentation.Controllers
                     {
                         clientNames.Add(clientName);
                     }
-                    
                     var csName = clientName +"+"+ supplierName;
                     clientsSuppliers.Add(csName);
                 }
             }
             ViewBag.Suppliers = supplierNames;
-            ViewBag.Clients = clientNames;
+            //ViewBag.Clients = clientNames;
+            ViewBag.Clients = (from client in db.Clients select client.Name).ToList();
             ViewBag.ClientSuppliers = clientsSuppliers;
             ViewBag.ProductId = id;
             return View();
@@ -217,13 +225,13 @@ namespace SceptrDocumentation.Controllers
                     {
                         clientNames.Add(clientName);
                     }
-
                     var csName = clientName + "+" + supplierName;
                     clientsSuppliers.Add(csName);
                 }
             }
             ViewBag.Suppliers = supplierNames;
-            ViewBag.Clients = clientNames;
+            //ViewBag.Clients = clientNames;
+            ViewBag.Clients = (from client in db.Clients select client.Name).ToList();
             ViewBag.ClientSuppliers = clientsSuppliers;
             ViewBag.ProductId = id.ToString();
             return View();
@@ -231,18 +239,16 @@ namespace SceptrDocumentation.Controllers
         [HttpPost, ActionName("Update")]
         public ActionResult Update(string[] clientSuppliers,int productID)
         {
-            var rows = from o in db.ClientSupplierMaps select o;
-            //foreach (var row in rows)
-            //{
-            //    db.ClientSupplierMaps.Remove(row);
-            //}
-            //db.SaveChanges();
-            //var objCtx = ((System.Data.Entity.Infrastructure.IObjectContextAdapter)db).ObjectContext;
-            //objCtx.ExecuteStoreCommand("TRUNCATE TABLE SupplierProduct"); 
+            var rows = from o in db.ClientSupplierMaps where o.ProductId==productID select o;
+            foreach (var row in rows)
+            {
+                db.ClientSupplierMaps.Remove(row);
+            }
+            db.SaveChanges(); 
             for (int i = 0; i < clientSuppliers.Length; i++)
             {
                 var client_suppliers = clientSuppliers[i];
-                string pattern = @"(\w+)+(\w+)+(\w+)";
+                string pattern = @"(\w+)+(\w+)";
                 MatchCollection mc = Regex.Matches(client_suppliers, pattern);
                 var client = mc[0];
                 var supplier = mc[1];
@@ -258,9 +264,8 @@ namespace SceptrDocumentation.Controllers
                 clientSupplierMap.ProductId = productID;
                 db.ClientSupplierMaps.Add(clientSupplierMap);
                 db.SaveChanges();
-
             }
-            return RedirectToAction("SupplierProduct");
+            return RedirectToAction("");
         }
 
 

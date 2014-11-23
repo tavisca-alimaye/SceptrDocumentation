@@ -18,7 +18,10 @@ namespace SceptrDocumentation.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var list = (from prod in db.Products select prod).ToList();
+            var grouped = list.GroupBy(item => item.Name);
+            var shortest = grouped.Select(grp => grp.OrderBy(item => item.Name).First());
+            return View(shortest);
         }
 
         //
@@ -48,6 +51,10 @@ namespace SceptrDocumentation.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
+            var productsInDatabase = (from prod in db.Products select prod.Name).ToList();
+            if (productsInDatabase.Contains(product.Name))
+                throw(new Exception("Product Already Present in Database."));
+
             if (ModelState.IsValid)
             {
                 db.Products.Add(product);
