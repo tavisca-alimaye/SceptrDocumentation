@@ -18,10 +18,10 @@ namespace SceptrDocumentation.Controllers
 
         public ActionResult Index()
         {
-            var list = (from prod in db.Products select prod).ToList();
-            var grouped = list.GroupBy(item => item.Name);
-            var shortest = grouped.Select(grp => grp.OrderBy(item => item.Name).First());
-            return View(shortest);
+            var products = (from prod in db.Products select prod).ToList();
+            var grouped = products.GroupBy(item => item.Name);
+            var uniqueProducts = grouped.Select(grp => grp.OrderBy(item => item.Name).First());
+            return View(uniqueProducts);
         }
 
         //
@@ -52,8 +52,11 @@ namespace SceptrDocumentation.Controllers
         public ActionResult Create(Product product)
         {
             var productsInDatabase = (from prod in db.Products select prod.Name).ToList();
-            if (productsInDatabase.Contains(product.Name))
-                throw(new Exception("Product Already Present in Database."));
+            //if (productsInDatabase.Contains(product.Name))
+            //    throw(new Exception("Product Already Present in Database."));
+
+            if (productsInDatabase.FindIndex(x => x.Equals(product.Name,StringComparison.OrdinalIgnoreCase)) != -1)
+                throw (new Exception("Product Already Present in Database."));
 
             if (ModelState.IsValid)
             {
@@ -61,7 +64,6 @@ namespace SceptrDocumentation.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(product);
         }
 

@@ -19,14 +19,9 @@ namespace SceptrDocumentation.Controllers
 
         public ActionResult Index()
         {
-            //var list = (from clientSupplier in db.ClientSupplierMaps select clientSupplier).ToList();
-            //var grouped = list.GroupBy(item => item.Product.Name);
-            //var shortest = grouped.Select(grp => grp.OrderBy(item => item.Product.Name).First());
-            //return View(shortest);
             var list = (from product in db.Products select product).ToList();
             var grouped = list.GroupBy(item => item.Name);
             var shortest = grouped.Select(grp => grp.OrderBy(item => item.Name).First());
-            //ViewBag.Products = shortest;
             return View(shortest);
             
         }
@@ -207,7 +202,6 @@ namespace SceptrDocumentation.Controllers
                              where suppProd.Product.ID == id
                              select suppProd.SupplierId).ToList();
             var supplierNames = new List<string>();
-            var clientNames = new List<string>();
             var clientsSuppliers = new List<string>();
             foreach (var supplier in suppliers)
             {
@@ -221,16 +215,11 @@ namespace SceptrDocumentation.Controllers
                 foreach (var cId in clientId)
                 {
                     var clientName = (from client in db.Clients where client.ID == cId select client.Name).First();
-                    if (!clientNames.Contains(clientName))
-                    {
-                        clientNames.Add(clientName);
-                    }
                     var csName = clientName + "+" + supplierName;
                     clientsSuppliers.Add(csName);
                 }
             }
             ViewBag.Suppliers = supplierNames;
-            //ViewBag.Clients = clientNames;
             ViewBag.Clients = (from client in db.Clients select client.Name).ToList();
             ViewBag.ClientSuppliers = clientsSuppliers;
             ViewBag.ProductId = id.ToString();
